@@ -392,6 +392,7 @@ module ActiveResourceIntegrationDsl
     
     def crud_to(method,path,params,opts={})
       if opts[:via_ajax]
+        params.reverse_merge!(:format => :js)
         opts.reverse_merge!({:expects => :success})
         self.send(:xhr,method,path,params,opts[:headers])
       else 
